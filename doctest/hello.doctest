@@ -1,0 +1,12 @@
+doctest: Loading Hello file!
+>> load 'hello.rb'
+
+doctest: hello method returns "Hello World!" 
+>> hello
+=> "Hello World!"
+doctest: I can greet someone by name
+>> hello('Dave')
+=> "Hello Dave!"
+doctest: I can ask someone if they are there
+>> hello('Victor', "?")
+=> "Hello Victor?"
