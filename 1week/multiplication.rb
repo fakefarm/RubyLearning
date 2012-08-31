@@ -1,98 +1,59 @@
-=begin
-Here are the rules:
-
-Required: method needs to provide an object. Don’t just print to screen, it isn’t the goal.
-The method needs to accept an Integer.
-Required: the table object should have uniform spacing throughout the table.
-Optional: You should be able to decorate the table with and without a heading and with and without decoration when asked for.
-Preferred but optional: The heading may be Centered to the table, and the decoration (if the decoration is there). The decoration should hang one space (on each side) over the area taken by the numeric matrix. The heading should be on or within the same guide. (As shown in the 9x9 grid).
-So, you may note that the method only takes one number. That is so there is no question about a YxY grid.
-
-The goal here is having uniform columnar formatting, regardless of the result of the (valid) input. Everything else is ‘extra’ (and fun!).
-
-Oh, only two samples were given, but, it should be able to handle decoration without heading, or heading without decoration, or both (as shown) or neither (as also shown). This part of it is the extra fun part.
-
-Oh, a side note… You CAN copy and paste the sample solution for the 9x9 grid, and use that as test data, exactly as posted here (taking into account the “\n” that must exist as the last character of each line.
-
-That is if you are using minitest (built into Ruby 1.9), or Test::Unit or Rspec or something other.
-=end
-
-
-# multiplication table of any number
-# takes options of w/ & w/o heading
-# formated properly
 
 =begin
-doctest: Testing times table 9 with title and decoration
+    doctest: Setup times table 9 proof variable
+    >> times_table_9_proof = " Times Table to 9\n ===========================\n 1 2 3 4 5 6 7 8 9\n 2 4 6 8 10 12 14 16 18\n 3 6 9 12 15 18 21 24 27\n 4 8 12 16 20 24 28 32 36\n 5 10 15 20 25 30 35 40 45\n 6 12 18 24 30 36 42 48 54\n 7 14 21 28 35 42 49 56 63\n 8 16 24 32 40 48 56 64 72\n 9 18 27 36 45 54 63 72 81\n ===========================\n"
 
-times_table_9_proof = <<-EOS #dash("-") allows for EOS (end) to be positioned off the left margin
-Times Table to 9
->> times_table_9_proof = <<-EOS
- Times Table to 9
- ===========================
-  1  2  3  4  5  6  7  8  9
-  2  4  6  8 10 12 14 16 18
-  3  6  9 12 15 18 21 24 27
-  4  8 12 16 20 24 28 32 36
-  5 10 15 20 25 30 35 40 45
-  6 12 18 24 30 36 42 48 54
-  7 14 21 28 35 42 49 56 63
-  8 16 24 32 40 48 56 64 72
-  9 18 27 36 45 54 63 72 81
- ===========================
- EOS
 
->> multiplication_table(9, 'Times Table to 9', true) == times_table_9_proof
-=> true
+    doctest: Testing times table 9 with title and decoration
+
+    times_table_9_proof = <<-EOS 
+     Times Table to 9
+     ===========================
+      1  2  3  4  5  6  7  8  9
+      2  4  6  8 10 12 14 16 18
+      3  6  9 12 15 18 21 24 27
+      4  8 12 16 20 24 28 32 36
+      5 10 15 20 25 30 35 40 45
+      6 12 18 24 30 36 42 48 54
+      7 14 21 28 35 42 49 56 63
+      8 16 24 32 40 48 56 64 72
+      9 18 27 36 45 54 63 72 81
+     ===========================
+     EOS
+
+    >> multiplication_table(9, 'Times Table to 9', true) == times_table_9_proof
+    => true
+
+    doctest: set_title method returns the title
+    >> set_title("title")
+    => "title"
+
+    doctest: decoration method set to true will provide fancy equal bars "="
+    >> decoration(10, true)
+    => "=========="
 =end
 
-def multiplication_table(arg1, arg2, arg3)
-  
+def set_title(title)
+  puts "#{title}"
+end
+
+def decoration(count, switch = true)
+  puts "".center(count,"=") if switch == true
+end
+
+def multiplication_table(arg1, title, style)
+  set_title(title)
+  decoration(arg1,style)
+  1.upto arg1 do |column|
+      1.upto arg1 do |row|
+        print " #{column * row}"
+    end
+   puts
+  end
 end
 
 
-
-if __FILE__ == $0
-times_table_9_proof = <<-EOS
- Times Table to 9
- ===========================
-  1  2  3  4  5  6  7  8  9
-  2  4  6  8 10 12 14 16 18
-  3  6  9 12 15 18 21 24 27
-  4  8 12 16 20 24 28 32 36
-  5 10 15 20 25 30 35 40 45
-  6 12 18 24 30 36 42 48 54
-  7 14 21 28 35 42 49 56 63
-  8 16 24 32 40 48 56 64 72
-  9 18 27 36 45 54 63 72 81
- ===========================
- EOS
-
-times_table_20_proof = <<EOS # Without dash, EOS needs to be flush to left.
-   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
-   2   4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34  36  38  40
-   3   6   9  12  15  18  21  24  27  30  33  36  39  42  45  48  51  54  57  60
-   4   8  12  16  20  24  28  32  36  40  44  48  52  56  60  64  68  72  76  80
-   5  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100
-   6  12  18  24  30  36  42  48  54  60  66  72  78  84  90  96 102 108 114 120
-   7  14  21  28  35  42  49  56  63  70  77  84  91  98 105 112 119 126 133 140
-   8  16  24  32  40  48  56  64  72  80  88  96 104 112 120 128 136 144 152 160
-   9  18  27  36  45  54  63  72  81  90  99 108 117 126 135 144 153 162 171 180
-  10  20  30  40  50  60  70  80  90 100 110 120 130 140 150 160 170 180 190 200
-  11  22  33  44  55  66  77  88  99 110 121 132 143 154 165 176 187 198 209 220
-  12  24  36  48  60  72  84  96 108 120 132 144 156 168 180 192 204 216 228 240
-  13  26  39  52  65  78  91 104 117 130 143 156 169 182 195 208 221 234 247 260
-  14  28  42  56  70  84  98 112 126 140 154 168 182 196 210 224 238 252 266 280
-  15  30  45  60  75  90 105 120 135 150 165 180 195 210 225 240 255 270 285 300
-  16  32  48  64  80  96 112 128 144 160 176 192 208 224 240 256 272 288 304 320
-  17  34  51  68  85 102 119 136 153 170 187 204 221 238 255 272 289 306 323 340
-  18  36  54  72  90 108 126 144 162 180 198 216 234 252 270 288 306 324 342 360
-  19  38  57  76  95 114 133 152 171 190 209 228 247 266 285 304 323 342 361 380
-  20  40  60  80 100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400
-EOS
-
-puts times_table_20_proof
-end
+puts multiplication_table(9, "Times Table to 9", true)
 
 
 
