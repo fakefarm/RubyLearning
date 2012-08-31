@@ -24,11 +24,11 @@ That is if you are using minitest (built into Ruby 1.9), or Test::Unit or Rspec 
 
 =begin
 doctest: Testing times table 9 with title and decoration
->> multiplication_table(9, "Times Table to 9", true) == times_table_9_proof
-=> true
 
 times_table_9_proof = <<-EOS #dash("-") allows for EOS (end) to be positioned off the left margin
 Times Table to 9
+>> times_table_9_proof = <<-EOS
+ Times Table to 9
  ===========================
   1  2  3  4  5  6  7  8  9
   2  4  6  8 10 12 14 16 18
@@ -42,21 +42,19 @@ Times Table to 9
  ===========================
  EOS
 
+>> multiplication_table(9, 'Times Table to 9', true) == times_table_9_proof
+=> true
 =end
 
 def multiplication_table(arg1, arg2, arg3)
   
 end
 
-puts 
 
-puts "__FILE__ = #{__FILE__}"
-puts "$0 = #{$0}"
 
 if __FILE__ == $0
-
-times_table_9_proof = <<-EOS 
-Times Table to 9
+times_table_9_proof = <<-EOS
+ Times Table to 9
  ===========================
   1  2  3  4  5  6  7  8  9
   2  4  6  8 10 12 14 16 18
@@ -69,7 +67,6 @@ Times Table to 9
   9 18 27 36 45 54 63 72 81
  ===========================
  EOS
-
 
 times_table_20_proof = <<EOS # Without dash, EOS needs to be flush to left.
    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
@@ -96,4 +93,15 @@ EOS
 
 puts times_table_20_proof
 end
+
+
+
+
+
+
+
+
+
+
+
 
