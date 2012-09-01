@@ -47,10 +47,12 @@ puts "Your options are: #{options.join(", ")}"
 
 type = STDIN.gets.chomp
 
+# Which way do you want to convert, is asking to convert to
+# convert 97 From F to C  (you had it running backwards or your language was not clear enough.)
 if type == "C"
-	puts "#{number} degrees celsius is #{to_fahrenheit(number)} degrees fahrenheit."
+  puts "#{number} degrees fahrenheit is #{to_celsius(number)} degrees celsius."
 else type == "F"
-	puts "#{number} degrees fahrenheit is #{to_celsius(number)} degrees celsius."
+  puts "#{number} degrees celsius is #{to_fahrenheit(number)} degrees fahrenheit."
 end
 
 puts dots
