@@ -55,41 +55,6 @@ def multiplication_table(arg1, title, style)
 end
 
 
-puts multiplication_table(9, "Times Table to 9", true)
-
-
-
-
-
-
-
-
-
-
-
-=begin
->> times_table_9_proof = <<-EOS
- Times Table to 9
- ===========================
-  1  2  3  4  5  6  7  8  9
-  2  4  6  8 10 12 14 16 18
-  3  6  9 12 15 18 21 24 27
-  4  8 12 16 20 24 28 32 36
-  5 10 15 20 25 30 35 40 45
-  6 12 18 24 30 36 42 48 54
-  7 14 21 28 35 42 49 56 63
-  8 16 24 32 40 48 56 64 72
-  9 18 27 36 45 54 63 72 81
- ===========================
- EOS
->> multiplication_table(9, 'Times Table to 9', true) == times_table_9_proof
-=> true
-=end
-
-def multiplication_table(arg1, arg2, arg3)
-end
-
-
 
 
 
@@ -133,5 +98,6 @@ times_table_9_proof = <<-EOS
   20  40  60  80 100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400
  EOS
 
-puts times_table_20_proof
+puts multiplication_table(9, "Times Table to 9", true)
+
 end
